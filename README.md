@@ -57,7 +57,6 @@ http://127.0.0.1:5000
 ## Autor
 
 Abner Santana de Carvalho
-
 ## Projeto Acadêmico
 
 Desenvolvido para a disciplina de Inteligência Artificial para Desenvolvedores.

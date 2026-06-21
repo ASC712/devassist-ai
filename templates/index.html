@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DevAssist AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🤖 DevAssist AI</h1>
+
+    <p>Assistente Inteligente para Desenvolvedores</p>
+
+    <select id="modo">
+        <option value="mentor">Mentor Dev</option>
+        <option value="codigo">Explicar Código</option>
+        <option value="readme">Gerar README</option>
+    </select>
+
+    <textarea
+        id="texto"
+        placeholder="Digite sua pergunta ou cole um código"></textarea>
+
+    <button onclick="enviar()">
+        Processar
+    </button>
+
+    <pre id="resposta"></pre>
+
+</div>
+
+<script>
+async function enviar() {
+
+    const texto =
+        document.getElementById("texto").value;
+
+    const modo =
+        document.getElementById("modo").value;
+
+    const resposta = await fetch("/processar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            texto: texto,
+            modo: modo
+        })
+    });
+
+    const dados = await resposta.json();
+
+    document.getElementById("resposta")
+        .innerText = dados.resposta;
+}
+</script>
+
+</body>
+</html>
